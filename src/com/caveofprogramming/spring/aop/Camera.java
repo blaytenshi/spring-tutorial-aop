@@ -5,8 +5,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class Camera {
 	// point cut defines where a join point is
-	public void snap() {
+	public void snap() throws Exception {
 		System.out.println("snap!");
+		
+		throw new Exception("bye bye!");
 	}
 	
 	public void snap(int exposure) {
