@@ -10,13 +10,15 @@ public class App {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
 				"com/caveofprogramming/spring/aop/beans.xml");
 
-		Camera camera = (Camera) context.getBean("camera");
-		Lens lens = (Lens) context.getBean("lens");
+		Object obj = (ICamera) context.getBean("camera");
+		System.out.println("Class of camera bean: " + obj.getClass());
+		System.out.println(obj instanceof Camera);
+		
+		ICamera camera = (ICamera) context.getBean("camera");
 
 		try {
 			camera.snap();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			System.out.println("Caught Exception " + e.getMessage());
 		}
 
