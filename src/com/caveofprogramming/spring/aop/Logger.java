@@ -11,15 +11,40 @@ import org.springframework.stereotype.Component;
 public class Logger {
 	
 	// This will now insert the this pointcut which is a before pointcut into any method call within the Camera package
-	@Pointcut("within(com.caveofprogramming.spring.aop.*)")
-	public void cameraSnap() {
+	@Pointcut("within(com.caveofprogramming.spring..*)")
+	public void withinDemo() {
 		
 	}
 	
-	@Before("cameraSnap()")
+	// Cannot use wildcards here (ie, *)
+	// Injected when the actual target class is run
+	@Pointcut("target(com.caveofprogramming.spring.aop.Camera)")
+	public void targetDemo() {
+		
+	}
+	
+	// "This" targets the interfaces of the targetted class
+	@Pointcut("this(com.caveofprogramming.spring.aop.ICamera)")
+	public void thisDemo() {
+		
+	}
+	
+	@Before("withinDemo()")
 	// Advice
-	public void aboutToTakePhoto() {
-		System.out.println("********** Before advice **********");
+	public void withinDemoAdvice() {
+		System.out.println("********** Before demo **********");
+	}
+	
+	@Before("withinDemo()")
+	// Advice
+	public void targetDemoAdvice() {
+		System.out.println("********** Target demo **********");
+	}
+	
+	@Before("withinDemo()")
+	// Advice
+	public void thisDemoAdvice() {
+		System.out.println("********** This demo **********");
 	}
 
 }
