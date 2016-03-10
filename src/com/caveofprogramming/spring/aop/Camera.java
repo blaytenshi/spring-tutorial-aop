@@ -25,10 +25,8 @@ public class Camera implements PhotoSnapper, Machine, ICamera {
 	 * @see com.caveofprogramming.spring.aop.ICamera#snap()
 	 */
 	@Override
-	public void snap() throws Exception {
+	public void snap() {
 		System.out.println("snap!");
-		
-		// throw new Exception("bye bye!");
 	}
 	
 	/* (non-Javadoc)
