@@ -10,41 +10,56 @@ import org.springframework.stereotype.Component;
 // Aspect
 public class Logger {
 	
-	// This will now insert the this pointcut which is a before pointcut into any method call within the Camera package
-	@Pointcut("within(com.caveofprogramming.spring..*)")
-	public void withinDemo() {
+	/*
+	// Creates a pointcut that targets any annotation specified Annotation. If it's a Spring annotation you need to give it the full path name. If not, just the annotation will do.
+	@Pointcut("within(@org.springframework.stereotype.Component com.caveofprogramming.spring..*)")
+	public void somePointcut() {
 		
 	}
 	
-	// Cannot use wildcards here (ie, *)
-	// Injected when the actual target class is run
-	@Pointcut("target(com.caveofprogramming.spring.aop.Camera)")
-	public void targetDemo() {
-		
-	}
-	
-	// "This" targets the interfaces of the targetted class
-	@Pointcut("this(com.caveofprogramming.spring.aop.ICamera)")
-	public void thisDemo() {
-		
-	}
-	
-	@Before("withinDemo()")
+	@Before("somePointcut()")
 	// Advice
-	public void withinDemoAdvice() {
+	public void somePointcutDemo() {
 		System.out.println("********** Before demo **********");
 	}
 	
-	@Before("withinDemo()")
-	// Advice
-	public void targetDemoAdvice() {
-		System.out.println("********** Target demo **********");
+	
+	// Creates a pointcut for all methods in all classes with the Component annotation.
+	@Pointcut("@target(org.springframework.stereotype.Component)")
+	public void somePointcut() {
+		
 	}
 	
-	@Before("withinDemo()")
+	@Before("somePointcut()")
 	// Advice
-	public void thisDemoAdvice() {
-		System.out.println("********** This demo **********");
+	public void somePointcutDemo() {
+		System.out.println("********** Before demo **********");
+	}
+	
+	// Creates a pointcut for all methods with the Component annotation.
+	@Pointcut("@annotation(java.lang.Deprecated)")
+	public void somePointcut() {
+		
+	}
+	
+	@Before("somePointcut()")
+	// Advice
+	public void somePointcutDemo() {
+		System.out.println("********** Before demo **********");
+	}
+	
+	*/
+	
+	// Creates a pointcut for all argument classes (see snapCar()) that is annotated with the specified annotation.
+	@Pointcut("@args(java.lang.Deprecated)")
+	public void somePointcut() {
+		
+	}
+	
+	@Before("somePointcut()")
+	// Advice
+	public void somePointcutDemo() {
+		System.out.println("********** Before demo **********");
 	}
 
 }

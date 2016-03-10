@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 // the other solution is to make the camera implement itself as an interface and then use that interface to get the context.
 
+@Deprecated
 @Component("camera")
 public class Camera implements PhotoSnapper, Machine, ICamera {
 	
@@ -25,6 +26,7 @@ public class Camera implements PhotoSnapper, Machine, ICamera {
 	 * @see com.caveofprogramming.spring.aop.ICamera#snap()
 	 */
 	@Override
+	@Deprecated
 	public void snap() {
 		System.out.println("snap!");
 	}
@@ -53,5 +55,9 @@ public class Camera implements PhotoSnapper, Machine, ICamera {
 	@Override
 	public void snapNightTime() {
 		System.out.println("Snap night mode...");
+	}
+	
+	public void snapCar(Car car) {
+		System.out.println("Snapping car!");
 	}
 }
