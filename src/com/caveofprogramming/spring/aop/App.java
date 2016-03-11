@@ -12,6 +12,8 @@ public class App {
 
 		camera.snap();
 		camera.snap(500);
+		camera.snap(1.8);
+		camera.snap(500, 1.8);
 		camera.snapNightTime();
 
 		Car car = (Car) context.getBean("car");

@@ -6,6 +6,10 @@ public interface ICamera {
 	void snap();
 
 	void snap(int exposure);
+	
+	void snap(double d);
+	
+	void snap(int i, double d);
 
 	String snap(String name);
 

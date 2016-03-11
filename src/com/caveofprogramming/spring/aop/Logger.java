@@ -10,8 +10,17 @@ import org.springframework.stereotype.Component;
 // Aspect
 public class Logger {
 	
-	// targets any bean with the name camera (in Component in this case) the asterisk means 0 or more characters before the camera word. You can get it to target the car bean with *a*
-	@Pointcut("bean(*camera)")
+	// args() will match any method in our container that contains no arguments
+	// args(int) will match any method that has an int as the argument
+	// args(int, double) will match any method that has an int and then a double (in that order)
+	// args(com.caveofprogramming.spring.aop.Car) will match any method that matches a Car type (regular java objects do not require fully qualified path)
+	// args(int, *) will match any method that has first an int and then any class type as argument
+	// args(int, ..) will match any method that has first an int and then zero or more arguments of any class type
+	// Use this with caution because it looks like it's not just using class type to do the isolation but anything that can be cast to that type too (in this example
+	//   by putting in only double will match the int as well as the double method calls in camera. If you want to target double type you can use the Autoboxed Double
+	//   class type because it can't be autocasted to any other type.
+	// The args PCD is usually used in a binding form where we use it to bind values from our target methods to our advice arguments that enable us to get the values of arguments from our target methods
+	@Pointcut("args(int, ..)")
 	public void somePointcut() {
 		
 	}
